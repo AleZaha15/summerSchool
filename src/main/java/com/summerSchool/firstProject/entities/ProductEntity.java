@@ -1,8 +1,12 @@
 package com.summerSchool.firstProject.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name="Product")
@@ -17,6 +21,9 @@ public class ProductEntity {
 	
 	@Column
 	private double price;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "productEntity")
+	private List<OrderDetailsEntity> orderDetailsList;
 
 	public int getId() {
 		return id;
